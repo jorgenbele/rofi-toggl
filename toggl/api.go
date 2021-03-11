@@ -144,6 +144,18 @@ func CreateNewProjectOnWorkspace(token string, wid int, name string) (Project, e
 	return resp, nil
 }
 
+func GetProject(token string, pid int) (Project, error) {
+	var resp ProjectResponse
+	header := authHeader(token)
+	r, err := req.Get(fmt.Sprintf("%s/projects/%d", baseURL, pid), header)
+	if err != nil {
+		return resp.Data, err
+	}
+	r.ToJSON(&resp)
+	log.Println("got project", resp.Data)
+	return resp.Data, nil
+}
+
 func GetProjectsForWorkspace(token string, id int) ([]Project, error) {
 	var resp []Project
 	header := authHeader(token)

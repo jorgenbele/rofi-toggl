@@ -6,7 +6,7 @@ rofi-toggl lets you control toggl using rofi
 Usage: rofi-toggl
 
 Environment:
-  TOGGL_API_KEY  Used to authenticate with toggl
+  TOGGL_API_TOKEN  Used to authenticate with toggl
 ```
 
 # api

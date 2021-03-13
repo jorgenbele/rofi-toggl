@@ -3,7 +3,6 @@ package toggl
 import (
 	"encoding/base64"
 	"fmt"
-	"log"
 	"time"
 
 	"github.com/imroc/req"
@@ -88,7 +87,6 @@ type meResponse struct {
 }
 
 func Me(token string) (UserData, error) {
-	log.Println("ME")
 	var resp meResponse
 	header := authHeader(token)
 	r, err := req.Get(fmt.Sprintf("%s/me", baseURL), header)
@@ -96,7 +94,6 @@ func Me(token string) (UserData, error) {
 		return resp.Data, err
 	}
 	r.ToJSON(&resp)
-	log.Println("ME DONE")
 	return resp.Data, nil
 }
 
@@ -152,7 +149,6 @@ func GetProject(token string, pid int) (Project, error) {
 		return resp.Data, err
 	}
 	r.ToJSON(&resp)
-	log.Println("got project", resp.Data)
 	return resp.Data, nil
 }
 
@@ -164,7 +160,6 @@ func GetProjectsForWorkspace(token string, id int) ([]Project, error) {
 		return resp, err
 	}
 	r.ToJSON(&resp)
-	log.Printf("got projects for workspace: %d -- %v\n", id, resp)
 	return resp, nil
 }
 

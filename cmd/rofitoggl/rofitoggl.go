@@ -14,10 +14,6 @@ import (
 	"github.com/jorgenbele/rofi-toggl/toggl"
 )
 
-const (
-	DefaultCommandTimeout time.Duration = 5 * time.Second
-)
-
 // https://github.com/tkancf/rofi-snippet/blob/master/main.go
 func run(command string, args []string, r io.Reader) (error, string) {
 	// var cmd *exec.Cmd
@@ -26,9 +22,10 @@ func run(command string, args []string, r io.Reader) (error, string) {
 	// result := strings.TrimRight(string(out), "\n")
 	// return err, result
 
-	ctx, cancel := context.WithTimeout(context.Background(), DefaultCommandTimeout)
-	defer cancel()
+	// ctx, cancel := context.WithTimeout(context.Background(), DefaultCommandTimeout)
+	// defer cancel()
 
+	ctx := context.TODO()
 	cmd := exec.CommandContext(ctx, command, args...)
 	cmd.Stderr = os.Stderr
 	cmd.Stdin = r
@@ -38,9 +35,10 @@ func run(command string, args []string, r io.Reader) (error, string) {
 }
 
 func runWithoutInput(command string, args []string) (error, string) {
-	ctx, cancel := context.WithTimeout(context.Background(), DefaultCommandTimeout)
-	defer cancel()
+	// ctx, cancel := context.WithTimeout(context.Background(), DefaultCommandTimeout)
+	// defer cancel()
 
+	ctx := context.TODO()
 	cmd := exec.CommandContext(ctx, command, args...)
 	cmd.Stderr = os.Stderr
 	out, err := cmd.Output()

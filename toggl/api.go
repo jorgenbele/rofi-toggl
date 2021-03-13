@@ -219,7 +219,7 @@ func NewTimeEntry(description string) NewTimeEntryType {
 }
 
 func NewTimeEntryFromExisting(existing TimeEntry) NewTimeEntryType {
-	return NewTimeEntryType{Billable: existing.Billable, Description: existing.Description, CreatedWith: "curl"}
+	return NewTimeEntryType{Billable: existing.Billable, Description: existing.Description, CreatedWith: "curl", PID: existing.PID}
 }
 
 func (t TimeEntry) TimeDuration() time.Duration {
